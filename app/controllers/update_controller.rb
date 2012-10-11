@@ -3,12 +3,23 @@ class UpdateController < ApplicationController
   def index
     @message = params[:act]
 
-    @allF = FacilitiesHelper::PoliceParser.instance.parse
+    # Get all data
+    @allF = FacilitiesHelper::SportCenterParser.instance.parse
+    @allF << FacilitiesHelper::HospitalParser.instance.parse 
+    @allF << FacilitiesHelper::SchoolParser.instance.parse 
+    @allF << FacilitiesHelper::PoliceParser.instance.parse
+    @allF.flatten!
+
+    @stat = Array.new
+
+    #Check whether to update, or add new entry
     @allF.each do |x|
-      if x.save
-        @message << "Success!"
+      tmp = Facility.where("name = ?", x[:name])
+      if tmp.size > 0
+        tmp.first.update_attributes(x.getUpdateParam)
+        @stat << "Updated!"
       else
-        @message << "Fail"
+        @stat << (x.save ? "Saved" : "error")
       end
     end
     
