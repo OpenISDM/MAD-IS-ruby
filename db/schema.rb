@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20121009061826) do
 
   create_table "facilities", :force => true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "fac_type"
     t.string   "addr"
     t.string   "tel"
     t.float    "lat"
