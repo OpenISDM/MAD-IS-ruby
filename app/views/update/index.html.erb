@@ -1,0 +1,24 @@
+<h1>Update</h1>
+<p><%= @message %></p>
+<p> Data Fetched:
+	<table>
+		<tr>
+			<td>Name</td>
+			<td>Address</td>
+			<td>type</td>
+			<td>tel</td>
+			<td>lat</td>
+			<td>lon</td>
+		</tr>
+	<% @allF.each do |x| %>
+		<tr>
+			<td><%= x.name %></td>
+			<td><%= x.addr %></td>
+			<td> <%= x.fac_type %> </td>
+			<td> <%= x.tel %> </td>
+			<td> <%= x.lat %> </td>
+			<td> <%= x.lon %> </td>
+		</tr>
+	<% end %>
+	</table>
+</p>
