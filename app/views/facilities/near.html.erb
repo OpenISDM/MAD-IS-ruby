@@ -1,0 +1,26 @@
+<h1>Listing facilities</h1>
+<h2>Near <%= @lat %>, <%= @lon %> </h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Addr</th>
+    <th>Tel</th>
+    <th>Lat</th>
+    <th>Lon</th>
+  </tr>
+
+<% @facilities.each do |facility| %>
+  <tr>
+    <td><%= facility.name %></td>
+    <td><%= facility.fac_type %></td>
+    <td><%= facility.addr %></td>
+    <td><%= facility.tel %></td>
+    <td><%= facility.lat %></td>
+    <td><%= facility.lon %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

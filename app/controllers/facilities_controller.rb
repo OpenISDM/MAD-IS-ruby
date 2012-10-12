@@ -13,11 +13,28 @@ class FacilitiesController < ApplicationController
   # GET /facilities/1
   # GET /facilities/1.json
   def show
-    @facility = Facility.find(params[:id])
+    id = params[:id]
+    r = /[^0-9]+/
+    
+    if r =~ id  # if id contains non-digits
+      showGroup id
+    else
+      @facility = Facility.find(id)
+
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @facility }
+      end
+    end
+  end
+
+  def showGroup(id)
+    @facilities = Facility.where("fac_type = ?", id)
+    @type = id
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @facility }
+      format.html { render action: "showGroup" }
+      format.json { render json: @facilities}
     end
   end
 
@@ -59,7 +76,7 @@ class FacilitiesController < ApplicationController
     @facility = Facility.find(params[:id])
 
     respond_to do |format|
-      if @facility.update_attributes(params[:facility])
+      if @facilitycron
         format.html { redirect_to @facility, notice: 'Facility was successfully updated.' }
         format.json { head :no_content }
       else
@@ -78,6 +95,18 @@ class FacilitiesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to facilities_url }
       format.json { head :no_content }
+    end
+  end
+
+  def near
+    @lat = params[:lat]
+    @lon = params[:lon]
+    @range = params[:range]
+
+    @facilities = Facility.all
+    respond_to do |format|
+      format.html 
+      format.json { render json: @facilities }
     end
   end
 end
