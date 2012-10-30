@@ -2,7 +2,7 @@ class Facility < ActiveRecord::Base
   attr_accessible :addr, :lat, :lon, :name, :tel, :fac_type
 
   def getUpdateParam
-  	{:addr => self[:addr], :lat => self[:lat], :lon => self[:lon], :tel => self[:tel]}
+  	{:addr => self[:addr], :lat => self[:lat], :lon => self[:lon], :tel => self[:tel], :fac_type => self[:fac_type] }
   end
 
 end

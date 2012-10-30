@@ -16,8 +16,12 @@ class UpdateController < ApplicationController
     @allF.each do |x|
       tmp = Facility.where("name = ?", x[:name])
       if tmp.size > 0
-        tmp.first.update_attributes(x.getUpdateParam)
-        @stat << "Updated!"
+        unless tmp.first.getUpdateParam == x.getUpdateParam
+          tmp.first.update_attributes(x.getUpdateParam)
+          @stat << "Updated!"
+        else
+          @stat << "No Change"
+        end 
       else
         @stat << (x.save ? "Saved" : "error")
       end

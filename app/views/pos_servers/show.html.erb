@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Server:</b>
+  <%= @pos_server.server_id %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @pos_server.ip %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @pos_server.lat %>
+</p>
+
+<p>
+  <b>Lon:</b>
+  <%= @pos_server.lon %>
+</p>
+
+<p>
+  <b>Region:</b>
+  <%= @pos_server.region %>
+</p>
+
+
+<%= link_to 'Edit', edit_pos_server_path(@pos_server) %> |
+<%= link_to 'Back', pos_servers_path %>

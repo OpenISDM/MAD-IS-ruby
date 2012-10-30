@@ -1,0 +1,31 @@
+<h1>Listing pos_servers</h1>
+
+<table>
+  <tr>
+    <th>Server</th>
+    <th>Ip</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Region</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pos_servers.each do |pos_server| %>
+  <tr>
+    <td><%= pos_server.server_id %></td>
+    <td><%= pos_server.ip %></td>
+    <td><%= pos_server.lat %></td>
+    <td><%= pos_server.lon %></td>
+    <td><%= pos_server.region %></td>
+    <td><%= link_to 'Show', pos_server %></td>
+    <td><%= link_to 'Edit', edit_pos_server_path(pos_server) %></td>
+    <td><%= link_to 'Destroy', pos_server, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pos server', new_pos_server_path %>

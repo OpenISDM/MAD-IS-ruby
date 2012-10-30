@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  server_id: MyString
+  ip: MyString
+  lat: 1.5
+  lon: 1.5
+  region: MyString
+
+two:
+  server_id: MyString
+  ip: MyString
+  lat: 1.5
+  lon: 1.5
+  region: MyString

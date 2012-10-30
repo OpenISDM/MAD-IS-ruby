@@ -76,7 +76,7 @@ class FacilitiesController < ApplicationController
     @facility = Facility.find(params[:id])
 
     respond_to do |format|
-      if @facilitycron
+      if @facility.update_attributes(params[:facility])
         format.html { redirect_to @facility, notice: 'Facility was successfully updated.' }
         format.json { head :no_content }
       else
