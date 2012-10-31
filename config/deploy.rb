@@ -1,5 +1,5 @@
 set :application, "MAD-IS"
-set :repository,  "https://ph.ccg.tw/git/mad_is.git/"
+set :repository,  "git://github.com/lai61616/mad_is.git"
 
 set :scm, :git
 set :deploy_to, "/home/mad/mad_is"
