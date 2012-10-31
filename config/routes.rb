@@ -1,4 +1,6 @@
 MADIs::Application.routes.draw do
+  resources :ratings
+
   resources :pos_servers
 
   resources :facilities
