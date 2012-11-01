@@ -1,9 +1,10 @@
-<h1>Listing ratings</h1>
+<h1>Listing ratings for <%= @facility.name %> </h1>
 
+<% unless @facility.ratings.empty? %>
 <table>
   <tr>
-    <th>Facility</th>
     <th>Rate</th>
+    <th>Comment</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,15 +12,20 @@
 
 <% @ratings.each do |rating| %>
   <tr>
-    <td><%= rating.facility.name %></td>
     <td><%= rating.rate %></td>
-    <td><%= link_to 'Show', rating %></td>
-    <td><%= link_to 'Edit', edit_rating_path(rating) %></td>
-    <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td> <%= rating.comment %> </td>
+    <td><%= link_to 'Show', [@facility, rating] %></td>
+    <td><%= link_to 'Edit', edit_facility_rating_path(@facility, rating) %></td>
+    <td><%= link_to 'Destroy', [@facility, rating], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
+<% else %>
+  <p>Facility "<%= @facility.name %>" has no ratings yet.</p>
+<% end -%>
+
 <br />
 
-<%= link_to 'New Rating', new_rating_path %>
+<%= link_to 'New Rating', new_facility_rating_path(@facility) %>
+<%= link_to 'Back', @facility %>

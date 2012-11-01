@@ -3,6 +3,7 @@ class CreateRatings < ActiveRecord::Migration
     create_table :ratings do |t|
       t.integer :facility_id
       t.integer :rate
+      t.string  :comment
 
       t.timestamps
     end

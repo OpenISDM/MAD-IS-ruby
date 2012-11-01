@@ -30,6 +30,25 @@
   <%= @facility.lon %>
 </p>
 
+<h2>Ratings</h2>
+<% unless @facility.ratings.empty? %>
+<table>
+  <tr>
+    <th>Rate</th>
+    <th>Comment</th>
+  </tr>
 
+<% @facility.ratings.each do |rating| %>
+  <tr>
+    <td><%= rating.rate %></td>
+    <td> <%= rating.comment %> </td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+  <p>"<%= @facility.name %>" has no ratings yet.</p>
+<% end -%>
+<br />
 <%= link_to 'Edit', edit_facility_path(@facility) %> |
+<%= link_to 'Show Ratings', facility_ratings_path(@facility) %> |
 <%= link_to 'Back', facilities_path %>

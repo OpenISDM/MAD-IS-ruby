@@ -10,6 +10,10 @@
   <%= @rating.rate %>
 </p>
 
+<p>
+  <b>Comment:</b>
+  <%= @rating.comment %>
+</p>
 
-<%= link_to 'Edit', edit_rating_path(@rating) %> |
-<%= link_to 'Back', ratings_path %>
+<%= link_to 'Edit', edit_facility_rating_path(@facility, @rating) %> |
+<%= link_to 'Back', facility_ratings_path(@facility) %>

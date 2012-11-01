@@ -1,8 +1,10 @@
 class RatingsController < ApplicationController
-  # GET /ratings
-  # GET /ratings.json
+  
+  before_filter :get_facility
+  # get the facility specified by routing
+
   def index
-    @ratings = Rating.all
+    @ratings = @facility.ratings
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,7 @@ class RatingsController < ApplicationController
   # GET /ratings/1
   # GET /ratings/1.json
   def show
-    @rating = Rating.find(params[:id])
+    @rating = @facility.ratings.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +26,9 @@ class RatingsController < ApplicationController
   # GET /ratings/new
   # GET /ratings/new.json
   def new
-    @rating = Rating.new
+    @facility = Facility.find(params[:facility_id])
+    @rating = @facility.ratings.build
+    #@rating = Rating.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +38,19 @@ class RatingsController < ApplicationController
 
   # GET /ratings/1/edit
   def edit
-    @rating = Rating.find(params[:id])
+    @rating = @facility.ratings.find(params[:id])
   end
 
   # POST /ratings
   # POST /ratings.json
   def create
-    @rating = Rating.new(params[:rating])
+    @rating = @facility.ratings.build(params[:rating])
+    #@rating = Rating.new(params[:rating])
 
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to facility_ratings_url(@facility), notice: 'Rating was successfully created.' }
+        #format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
         format.json { render json: @rating, status: :created, location: @rating }
       else
         format.html { render action: "new" }
@@ -56,11 +62,12 @@ class RatingsController < ApplicationController
   # PUT /ratings/1
   # PUT /ratings/1.json
   def update
-    @rating = Rating.find(params[:id])
+    @rating = @facility.ratings.find(params[:id])
 
     respond_to do |format|
       if @rating.update_attributes(params[:rating])
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
+        format.html { redirect_to facility_ratings_url(@facility), notice: 'Rating was successfully updated.' }
+        #format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,12 +79,17 @@ class RatingsController < ApplicationController
   # DELETE /ratings/1
   # DELETE /ratings/1.json
   def destroy
-    @rating = Rating.find(params[:id])
+    @rating = @facility.ratings.find(params[:id])
     @rating.destroy
 
     respond_to do |format|
-      format.html { redirect_to ratings_url }
+      format.html { redirect_to facility_ratings_url(@facility) }
       format.json { head :no_content }
     end
   end
+end
+
+private
+def get_facility
+  @facility = Facility.find(params[:facility_id])
 end

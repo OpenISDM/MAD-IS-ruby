@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20121031015334) do
   create_table "ratings", :force => true do |t|
     t.integer  "facility_id"
     t.integer  "rate"
+    t.string   "comment"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

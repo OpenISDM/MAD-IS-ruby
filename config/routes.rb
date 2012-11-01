@@ -1,10 +1,10 @@
 MADIs::Application.routes.draw do
-  resources :ratings
 
   resources :pos_servers
 
-  resources :facilities
-
+  resources :facilities do
+    resources :ratings
+  end
   #  do 
   #   collection do 
   #     post 'near'
@@ -18,6 +18,7 @@ MADIs::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
   match 'update/:act' => 'update#index'
+  match 'ratings' => 'ratings#allIndex'
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
