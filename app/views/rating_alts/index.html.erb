@@ -1,0 +1,29 @@
+<h1>Listing Ratings</h1>
+
+<table>
+  <tr>
+    <th>Facility</th>
+    <th>Rate</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rating_alts.each do |rating_alt| %>
+  <tr>
+    <td><%= rating_alt.facility.name %></td>
+    <td><%= rating_alt.rate %></td>
+    <td><%= rating_alt.comment %> </td>
+    <td><%= link_to 'Show', [rating_alt.facility, rating_alt] %></td>
+    <td><%= link_to 'Edit', edit_facility_rating_path(rating_alt.facility, rating_alt) %></td>
+    <td><%= link_to 'Destroy', [rating_alt.facility, rating_alt], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<!--
+<%= link_to 'New Rating alt', new_rating_alt_path %>
+->
