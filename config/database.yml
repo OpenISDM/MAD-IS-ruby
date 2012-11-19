@@ -20,6 +20,9 @@ test:
 
 production:
   adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  pool: 5
   database: mad_db
   username: root
   password: openisdm
