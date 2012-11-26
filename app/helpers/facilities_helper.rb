@@ -25,19 +25,21 @@ module FacilitiesHelper
       a[:tel] = tel
       a[:lat] = lat
       a[:lon] = lon
-      return a
+      a
     end
 
+    # translate chinese address into lat/lon
     def get_coord(tw_address, iter=1)
       args = "/maps/api/geocode/json?address=" + URI::encode(tw_address) + "&sensor=false"
       response = Net::HTTP.get_response("maps.googleapis.com",args)
+      
       begin
         json = JSON.parse(response.body)
         coord = json["results"][0]["geometry"]["location"]
 
         return coord["lat"], coord["lng"]
 
-      rescue => ex
+      rescue => ex             # exception handling 
         puts "#{tw_address}: #{ex.message} attempt:#{iter}"
         unless iter > 4        # retry after 1 sec, maximum of 5 retries
           sleep 1

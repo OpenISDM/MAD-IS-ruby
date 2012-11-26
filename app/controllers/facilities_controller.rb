@@ -17,7 +17,7 @@ class FacilitiesController < ApplicationController
     r = /[^0-9]+/
     
     if r =~ id  # if id contains non-digits
-      showGroup id
+      showGroupForType id
     else
       @facility = Facility.find(id)
 
@@ -28,12 +28,12 @@ class FacilitiesController < ApplicationController
     end
   end
 
-  def showGroup(id)
+  def showGroupForType(id)
     @facilities = Facility.where("fac_type = ?", id)
     @type = id
 
     respond_to do |format|
-      format.html { render action: "showGroup" }
+      format.html { render action: "showGroupForType" }
       format.json { render json: @facilities}
     end
   end
